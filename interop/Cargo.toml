@@ -8,7 +8,7 @@ publish = false
 grpcio = { path = ".." }
 grpcio-sys = { path = "../grpc-sys" }
 grpcio-proto = { path = "../proto" }
-protobuf = "2"
+protobuf = "2.8"
 futures = "0.3"
 log = "0.4"
 clap = "2.23"
