@@ -56,3 +56,4 @@ travis-ci = { repository = "tikv/grpc-rs" }
 grpcio-compiler = { path = "compiler", version = "0.9.0", default-features = false }
 protobuf = { git = "https://github.com/shawgerj/rust-protobuf", branch = "v2.8" }
 protobuf-codegen = { git = "https://github.com/shawgerj/rust-protobuf", branch = "v2.8" }
+protobuf-build = { git = "https://github.com/shawgerj/protobuf-build", branch = "v0.14.1-patched" }
