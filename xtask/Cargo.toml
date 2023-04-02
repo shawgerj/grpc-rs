@@ -11,3 +11,9 @@ prost-build = "0.7"
 # Use an old enough version to make sure generated code with TiKV's fork.
 # TODO: use latest one when TiKV's fork is updated
 protoc-rust = "=2.8"
+
+[patch.crates-io]
+protoc-rust = { git = "https://github.com/shawgerj/rust-protobuf", branch = "v2.8" }
+protobuf = { git = "https://github.com/shawgerj/rust-protobuf", branch = "v2.8" }
+protobuf-codegen = { git = "https://github.com/shawgerj/rust-protobuf", branch = "v2.8" }
+#protobuf-build = { git = "https://github.com/shawgerj/protobuf-build", branch = "v0.14.1-patched" }
