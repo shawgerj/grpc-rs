@@ -237,37 +237,37 @@ fn generate_protobuf(protoc: &Path, include: &str, inputs: &[&str], out_dir: &st
     remove_protobuf_version_constraint(out_dir);
 }
 
-fn generate_protobufv3(protoc: &Path, include: &str, inputs: &[&str], out_dir: &str) {
-    delete_and_mkdir(out_dir);
+// fn generate_protobufv3(protoc: &Path, include: &str, inputs: &[&str], out_dir: &str) {
+//     delete_and_mkdir(out_dir);
 
-    let _ = protobuf_codegen::Codegen::new()
-        .protoc()
-        .includes([include])
-        .inputs(inputs)
-        .out_dir(out_dir)
-        .run();
+//     let _ = protobuf_codegen::Codegen::new()
+//         .protoc()
+//         .includes([include])
+//         .inputs(inputs)
+//         .out_dir(out_dir)
+//         .run();
 
-    run_gen_grpc(protoc, include, inputs, out_dir);
-    apply_naming_patch();
+//     run_gen_grpc(protoc, include, inputs, out_dir);
+//     apply_naming_patch();
 
-    for f in fs::read_dir(out_dir).unwrap() {
-        let path = f.unwrap().path();
-        if path.extension().unwrap() == "rs" {
-            modify(&path, |content| {
-                *content = content.replace("::protobuf::", "::protobufv3::");
-            });
+//     for f in fs::read_dir(out_dir).unwrap() {
+//         let path = f.unwrap().path();
+//         if path.extension().unwrap() == "rs" {
+//             modify(&path, |content| {
+//                 *content = content.replace("::protobuf::", "::protobufv3::");
+//             });
 
-            // remove ".proto file is parsed by protoc X.Y.Z" line
-            modify(&path, |content| {
-              *content = remove_match(&content, |l| l.contains(".proto file is parsed by protoc"));
-            });
-        }
-    }
+//             // remove ".proto file is parsed by protoc X.Y.Z" line
+//             modify(&path, |content| {
+//               *content = remove_match(&content, |l| l.contains(".proto file is parsed by protoc"));
+//             });
+//         }
+//     }
 
-    link_pb_with_grpc_rs(out_dir);
-    // note: now that we have distinct protobuf v2 and v3 generated files, not sure this step is necessary or good practice anymore
-    remove_protobuf_version_constraint(out_dir);
-}
+//     link_pb_with_grpc_rs(out_dir);
+//     // note: now that we have distinct protobuf v2 and v3 generated files, not sure this step is necessary or good practice anymore
+//     remove_protobuf_version_constraint(out_dir);
+// }
 
 fn generate_prost(protoc: &Path, include: &str, inputs: &[&str], out_dir: &str) {
     env::set_var("PROTOC", protoc);
@@ -319,12 +319,12 @@ fn codegen() {
             &inputs_ref,
             &format!("{}/protobuf/{}", out_dir, package),
         );
-        generate_protobufv3(
-            &protoc,
-            include,
-            &inputs_ref,
-            &format!("{}/protobuf_v3/{}", out_dir, package),
-        );
+        // generate_protobufv3(
+        //     &protoc,
+        //     include,
+        //     &inputs_ref,
+        //     &format!("{}/protobuf_v3/{}", out_dir, package),
+        // );
         generate_prost(
             &protoc,
             include,

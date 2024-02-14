@@ -17,7 +17,7 @@ protobuf-codec = ["protobuf"]
 prost-codec = ["prost-build", "prost-types", "prost", "derive-new", "tempfile"]
 
 [dependencies]
-protobuf = { version = "2", optional = true }
+protobuf = { version = "2.8", optional = true }
 prost = { version = "0.11", optional = true }
 prost-build = { version = "0.11", optional = true }
 prost-types = { version = "0.11", optional = true }
